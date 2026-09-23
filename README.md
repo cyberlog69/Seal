@@ -126,6 +126,8 @@ Seal will be always free and open source for everyone. If you like it, please co
 
 Contributions are welcome!
 
+Please check out our [ROADMAP.md](ROADMAP.md) to see planned milestones and current work in progress.
+
 You can help translate Seal on [Hosted Weblate](https://hosted.weblate.org/projects/seal/).
 	
 [![Translate status](https://hosted.weblate.org/widgets/seal/-/strings/multi-auto.svg)](https://hosted.weblate.org/engage/seal/)
