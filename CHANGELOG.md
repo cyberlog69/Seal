@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v2.0.0][2.0.0] - unreleased
 
-> See [ROADMAP.md](ROADMAP.md) for detailed milestone breakdown, stabilization progress, and release targets.
-
 ### Milestone 1 (Stabilization & V1 Retirement) - in progress
 
 - Fully decommission legacy single-job `Downloader` and obsolete V1 pages
