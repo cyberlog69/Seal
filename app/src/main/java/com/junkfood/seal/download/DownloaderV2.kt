@@ -284,6 +284,7 @@ class DownloaderV2Impl(private val appContext: Context) : DownloaderV2, KoinComp
                             textId = R.string.download_error_msg,
                             notificationId = notificationId,
                             report = throwable.stackTraceToString(),
+                            taskId = id,
                         )
                     }
             }
@@ -291,11 +292,11 @@ class DownloaderV2Impl(private val appContext: Context) : DownloaderV2, KoinComp
     }
 
     private fun Task.download() {
-        check(downloadState == ReadyWithInfo && info != null)
         if (type is TypeInfo.CustomCommand) {
             execute()
             return
         }
+        check(downloadState == ReadyWithInfo && info != null)
         scope
             .launch(Dispatchers.Default) {
                 DownloadUtil.downloadVideo(
@@ -355,6 +356,7 @@ class DownloaderV2Impl(private val appContext: Context) : DownloaderV2, KoinComp
                             textId = R.string.fetch_info_error_msg,
                             notificationId = notificationId,
                             report = throwable.stackTraceToString(),
+                            taskId = id,
                         )
                     }
             }
@@ -409,7 +411,7 @@ class DownloaderV2Impl(private val appContext: Context) : DownloaderV2, KoinComp
      * @see Task.TypeInfo.CustomCommand
      */
     private fun Task.execute() {
-        check(downloadState == Idle)
+        check(downloadState == Idle || downloadState == ReadyWithInfo)
         check(type is TypeInfo.CustomCommand)
         val template = type.template
         val logBuilder = StringBuilder(taskLogMap[id] ?: "")
@@ -452,6 +454,7 @@ class DownloaderV2Impl(private val appContext: Context) : DownloaderV2, KoinComp
                             textId = R.string.fetch_info_error_msg,
                             notificationId = notificationId,
                             report = throwable.stackTraceToString(),
+                            taskId = id,
                         )
                     }
                     .onSuccess { response ->
